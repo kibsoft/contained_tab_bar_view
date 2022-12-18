@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:contained_tab_bar_view/contained_tab_bar_view.dart';
 
 void main() => runApp(App());
@@ -79,11 +80,7 @@ class Example1 extends StatelessWidget {
               Text('First'),
               Text('Second'),
             ],
-            views: [
-              Container(color: Colors.red),
-              Container(color: Colors.green)
-            ],
-            onChange: (index) => print(index),
+            views: [Container(color: Colors.red), Container(color: Colors.green)],
           ),
         ),
       ),
@@ -107,7 +104,6 @@ class Example2 extends StatelessWidget {
           Container(color: Colors.red),
           Container(color: Colors.green),
         ],
-        onChange: (index) => print(index),
       ),
     );
   }
@@ -136,7 +132,6 @@ class Example3 extends StatelessWidget {
           Container(color: Colors.red),
           Container(color: Colors.green),
         ],
-        onChange: (index) => print(index),
       ),
     );
   }
@@ -172,7 +167,6 @@ class Example4 extends StatelessWidget {
           Container(color: Colors.red),
           Container(color: Colors.green),
         ],
-        onChange: (index) => print(index),
       ),
     );
   }
@@ -217,11 +211,7 @@ class Example5 extends StatelessWidget {
               labelColor: Colors.white,
               unselectedLabelColor: Colors.grey[400],
             ),
-            views: [
-              Container(color: Colors.red),
-              Container(color: Colors.green)
-            ],
-            onChange: (index) => print(index),
+            views: [Container(color: Colors.red), Container(color: Colors.green)],
           ),
         ),
       ),
@@ -269,11 +259,7 @@ class Example6 extends StatelessWidget {
                 color: Colors.blue,
               ),
             ),
-            views: [
-              Container(color: Colors.red),
-              Container(color: Colors.green)
-            ],
-            onChange: (index) => print(index),
+            views: [Container(color: Colors.red), Container(color: Colors.green)],
           ),
         ),
       ),
@@ -295,7 +281,6 @@ class Example7 extends StatelessWidget {
         Container(color: Colors.red),
         Container(color: Colors.green),
       ],
-      onChange: (index) => print(index),
     );
 
     return Scaffold(
@@ -371,11 +356,7 @@ class Example8 extends StatelessWidget {
                 ),
               ),
             ),
-            views: [
-              Container(color: Colors.red),
-              Container(color: Colors.green)
-            ],
-            onChange: (index) => print(index),
+            views: [Container(color: Colors.red), Container(color: Colors.green)],
           ),
         ),
       ),
@@ -423,11 +404,7 @@ class Example9 extends StatelessWidget {
                 color: Colors.blue,
               ),
             ),
-            views: [
-              Container(color: Colors.red),
-              Container(color: Colors.green)
-            ],
-            onChange: (index) => print(index),
+            views: [Container(color: Colors.red), Container(color: Colors.green)],
           ),
         ),
       ),
@@ -453,14 +430,10 @@ class Example10 extends StatelessWidget {
               Text('First'),
               Text('Second'),
             ],
-            views: [
-              Container(color: Colors.red),
-              Container(color: Colors.green)
-            ],
+            views: [Container(color: Colors.red), Container(color: Colors.green)],
             tabBarViewProperties: TabBarViewProperties(
               physics: NeverScrollableScrollPhysics(),
             ),
-            onChange: (index) => print(index),
           ),
         ),
       ),

@@ -19,7 +19,6 @@ class ContainedTabBarView extends StatefulWidget {
     this.tabBarViewProperties = const TabBarViewProperties(),
     this.initialIndex = 0,
     this.onChange,
-    this.callOnChangeWhileIndexIsChanging = false,
   })  : assert(
           tabs.length == views.length,
           'There has to be an equal amount of tabs (${tabs.length}) and views (${views.length}).',
@@ -47,16 +46,9 @@ class ContainedTabBarView extends StatefulWidget {
   /// The initial tab index.
   final int initialIndex;
 
-  /// Everytime the tab index changed, this method is called.
-  ///
-  /// If [callOnChangeWhileIndexIsChanging] is true this method is
-  /// also called while we're animating from previousIndex to index
-  /// as a consequence of calling animateTo.
-  final void Function(int)? onChange;
-
-  /// Whether [onChange] should also get called while we're animating
-  /// from previousIndex to index as a consequence of calling animateTo.
-  final bool callOnChangeWhileIndexIsChanging;
+  /// Called when dragOffset changed or when the tab index changed.
+  final void Function(bool indexIsChanging, int currentIndex, int previousIndex, double dragOffset)?
+      onChange;
 
   @override
   State<StatefulWidget> createState() => ContainedTabBarViewState();
@@ -74,12 +66,20 @@ class ContainedTabBarViewState extends State<ContainedTabBarView>
       vsync: this,
       initialIndex: widget.initialIndex,
     )..addListener(() {
-        if (widget.callOnChangeWhileIndexIsChanging ||
-            (!widget.callOnChangeWhileIndexIsChanging &&
-                !_controller.indexIsChanging)) {
-          widget.onChange?.call(_controller.index);
+        if (_controller.offset != 0.0) {
+          widget.onChange?.call(true, _controller.index, _controller.previousIndex, 0.0);
         }
       });
+
+    _controller.animation?.addListener(() {
+      if (!indexIsChanging) {
+        final isLeft = _controller.offset < 0.0;
+        final value = _controller.animation?.value ?? 0.0;
+        final currentIndex = isLeft ? value.floor() : value.ceil();
+        final previousIndex = isLeft ? currentIndex + 1 : currentIndex - 1;
+        widget.onChange?.call(false, currentIndex, previousIndex, _controller.offset.abs());
+      }
+    });
   }
 
   /// True while we're animating from previousIndex to index
