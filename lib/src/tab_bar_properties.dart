@@ -3,26 +3,26 @@ import 'package:contained_tab_bar_view/src/enums.dart';
 
 /// Properties which define the [TabBar]'s appearance.
 class TabBarProperties {
-  const TabBarProperties({
-    this.width,
-    this.height = kToolbarHeight,
-    this.background,
-    this.position = TabBarPosition.top,
-    this.alignment = TabBarAlignment.center,
-    this.padding = const EdgeInsets.all(0.0),
-    this.margin = const EdgeInsets.all(0.0),
-    this.indicator,
-    this.indicatorColor,
-    this.indicatorPadding = const EdgeInsets.all(0.0),
-    this.indicatorSize,
-    this.indicatorWeight = 2.0,
-    this.isScrollable = false,
-    this.labelColor,
-    this.labelPadding = const EdgeInsets.all(0.0),
-    this.labelStyle,
-    this.unselectedLabelColor,
-    this.unselectedLabelStyle,
-  });
+  const TabBarProperties(
+      {this.width,
+      this.height = kToolbarHeight,
+      this.background,
+      this.position = TabBarPosition.top,
+      this.alignment = TabBarAlignment.center,
+      this.padding = const EdgeInsets.all(0.0),
+      this.margin = const EdgeInsets.all(0.0),
+      this.indicator,
+      this.indicatorColor,
+      this.indicatorPadding = const EdgeInsets.all(0.0),
+      this.indicatorSize,
+      this.indicatorWeight = 2.0,
+      this.isScrollable = false,
+      this.labelColor,
+      this.labelPadding = const EdgeInsets.all(0.0),
+      this.labelStyle,
+      this.unselectedLabelColor,
+      this.unselectedLabelStyle,
+      this.mouseCursor});
 
   /// The width of the [TabBar].
   ///
@@ -107,4 +107,9 @@ class TabBarProperties {
   ///
   /// See [TabBar documentation](https://api.flutter.dev/flutter/material/TabBar/unselectedLabelStyle.html).
   final TextStyle? unselectedLabelStyle;
+
+  /// The cursor for a mouse pointer when it enters or is hovering over the individual tab widgets.
+  ///
+  /// See [TabBar documentation](https://api.flutter.dev/flutter/material/TabBar/mouseCursor.html).
+  final MouseCursor? mouseCursor;
 }
