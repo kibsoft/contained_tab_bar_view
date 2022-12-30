@@ -11,15 +11,16 @@ import 'tab_bar_view_properties.dart';
 /// It lets you customize its appearance without worrying
 /// about internal workings of "TabBar ecosystem".
 class ContainedTabBarView extends StatefulWidget {
-  const ContainedTabBarView({
-    Key? key,
-    required this.tabs,
-    this.tabBarProperties = const TabBarProperties(),
-    required this.views,
-    this.tabBarViewProperties = const TabBarViewProperties(),
-    this.initialIndex = 0,
-    this.onChange,
-  })  : assert(
+  const ContainedTabBarView(
+      {Key? key,
+      required this.tabs,
+      this.tabBarProperties = const TabBarProperties(),
+      required this.views,
+      this.tabBarViewProperties = const TabBarViewProperties(),
+      this.initialIndex = 0,
+      this.onChange,
+      this.onTabChange})
+      : assert(
           tabs.length == views.length,
           'There has to be an equal amount of tabs (${tabs.length}) and views (${views.length}).',
         ),
@@ -50,6 +51,8 @@ class ContainedTabBarView extends StatefulWidget {
   final void Function(bool indexIsChanging, int currentIndex, int previousIndex, double dragOffset)?
       onChange;
 
+  final void Function(int currentIndex, int previousIndex)? onTabChange;
+
   @override
   State<StatefulWidget> createState() => ContainedTabBarViewState();
 }
@@ -68,6 +71,8 @@ class ContainedTabBarViewState extends State<ContainedTabBarView>
     )..addListener(() {
         if (_controller.offset != 0.0) {
           widget.onChange?.call(true, _controller.index, _controller.previousIndex, 0.0);
+        } else {
+          widget.onTabChange?.call(_controller.index, _controller.previousIndex);
         }
       });
 
